@@ -3,7 +3,7 @@ import { flatten, range, orderBy } from 'lodash';
 import pMap from 'p-map';
 import ranks from '~/static/ranks.js';
 
-const offset = range(0, 1000, 50);
+const offset = range(0, 7000, 50);
 const fetchScoreSet = (offset) => {
   return fetch(`https://api.opensea.io/api/v1/assets?collection=ability-score&offset=${offset}&limit=50`)
   .then(async response => {
