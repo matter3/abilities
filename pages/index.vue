@@ -1,12 +1,13 @@
 <template>
   <div class="home">
     <h1 class="home__header">Ability Scores</h1>
-    <p class="home__intro">Displays Ability Scores for sale by lowest price on <a href="https://opensea.io/collection/ability-score">OpenSea</a>. Includes rarity rank which is calculated <a href="https://github.com/Anish-Agnihotri/dhof-loot/blob/master/derivatives/andy8052-ability-score/output/score.json">here</a>.</p>
+    <p class="home__intro">Displays Ability Scores for sale by highest rank on <a href="https://opensea.io/collection/ability-score">OpenSea</a>. Includes rarity rank which is calculated <a href="https://github.com/Anish-Agnihotri/dhof-loot/blob/master/derivatives/andy8052-ability-score/output/score.json">here</a>.</p>
     <div class="home__ability-cards">
       <div v-for="item in items" :key="item.id" class="home__ability-cards__card">
-        <img :src="item.image_url">
-        <a :href="item.permalink">View on Opensea</a>
-        <span>Rank: {{ item.rank }} Score: {{ item.score }} Price {{ item.price }}</span>
+        <img :src="item.image_url" class="home__ability-cards__card-image">
+        <button class="home__ability-cards__card-button" @click="goTo(item.permalink)">Ξ {{ item.price }}</button><br/><br/>
+        <div>Rank: {{ item.rank }}</div>
+        <div>Score: {{ item.score }}</div>
       </div>
     </div>
   </div>
@@ -31,6 +32,9 @@ export default {
     getColor(tokenId) {
       
     },
+    goTo(link) {
+      window.location = link;
+    }
   }
 }
 </script>
@@ -53,9 +57,21 @@ export default {
 }
 .home__ability-cards .home__ability-cards__card {
   display: inline-block;
-  padding: 3rem;
+  padding: 1rem;
   border: 3px solid #fff;
-  margin: 1rem;
-  width: 20%;
+  margin: .9rem;
+  width: 25%;
+  text-align: center;
+}
+
+.home__ability-cards__card-button {
+  border-radius: 2px;
+  border: 1px solid white;
+  background-color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.home__ability-cards__card-image {
 }
 </style>
